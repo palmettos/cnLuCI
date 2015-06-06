@@ -17,18 +17,18 @@ module("luci.controller.admin.system", package.seeall)
 
 function index()
 	entry({"admin", "system"}, alias("admin", "system", "system"), _("System"), 30).index = true
-	entry({"admin", "system", "system"}, cbi("admin_system/system"), _("System"), 1)
+	--entry({"admin", "system", "system"}, cbi("admin_system/system"), _("System"), 1)
 	entry({"admin", "system", "clock_status"}, call("action_clock_status"))
 
 	entry({"admin", "system", "admin"}, cbi("admin_system/admin"), _("Administration"), 2)
 
-	if nixio.fs.access("/bin/opkg") then
-		entry({"admin", "system", "packages"}, call("action_packages"), _("Software"), 10)
-		entry({"admin", "system", "packages", "ipkg"}, form("admin_system/ipkg"))
-	end
+	--if nixio.fs.access("/bin/opkg") then
+	--	entry({"admin", "system", "packages"}, call("action_packages"), _("Software"), 10)
+	--	entry({"admin", "system", "packages", "ipkg"}, form("admin_system/ipkg"))
+	--end
 
-	entry({"admin", "system", "startup"}, form("admin_system/startup"), _("Startup"), 45)
-	entry({"admin", "system", "crontab"}, form("admin_system/crontab"), _("Scheduled Tasks"), 46)
+	--entry({"admin", "system", "startup"}, form("admin_system/startup"), _("Startup"), 45)
+	--entry({"admin", "system", "crontab"}, form("admin_system/crontab"), _("Scheduled Tasks"), 46)
 
 	if nixio.fs.access("/etc/config/fstab") then
 		entry({"admin", "system", "fstab"}, cbi("admin_system/fstab"), _("Mount Points"), 50)
@@ -36,9 +36,9 @@ function index()
 		entry({"admin", "system", "fstab", "swap"},  cbi("admin_system/fstab/swap"),  nil).leaf = true
 	end
 
-	if nixio.fs.access("/sys/class/leds") then
-		entry({"admin", "system", "leds"}, cbi("admin_system/leds"), _("<abbr title=\"Light Emitting Diode\">LED</abbr> Configuration"), 60)
-	end
+	--if nixio.fs.access("/sys/class/leds") then
+	--	entry({"admin", "system", "leds"}, cbi("admin_system/leds"), _("<abbr title=\"Light Emitting Diode\">LED</abbr> Configuration"), 60)
+	--end
 
 	entry({"admin", "system", "flashops"}, call("action_flashops"), _("Backup / Flash Firmware"), 70)
 	entry({"admin", "system", "flashops", "backupfiles"}, form("admin_system/backupfiles"))

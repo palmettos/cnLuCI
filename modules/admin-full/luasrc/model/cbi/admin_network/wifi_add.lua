@@ -50,9 +50,10 @@ m.hidden = {
 	bssid       = http.formvalue("bssid"),
 	wep         = http.formvalue("wep"),
 	wpa_suites	= http.formvalue("wpa_suites"),
-	wpa_version = http.formvalue("wpa_version")
+	wpa_version = http.formvalue("wpa_version"),
+	replace 	= "0"
 }
-
+[[--
 if iw and iw.mbssid_support then
 	replace = m:field(Flag, "replace", translate("Replace wireless configuration"),
 		translate("An additional network will be created if you leave this unchecked."))
@@ -65,7 +66,7 @@ else
 
 	function replace.formvalue() return "1" end
 end
-
+--]]
 if http.formvalue("wep") == "1" then
 	key = m:field(Value, "key", translate("WEP passphrase"),
 		translate("Specify the secret encryption key here."))
@@ -120,14 +121,14 @@ function newnet.parse(self, section)
 
 	wdev:set("disabled", false)
 	wdev:set("channel", m.hidden.channel)
-
+--[[
 	if replace:formvalue(section) then
 		local n
 		for _, n in ipairs(wdev:get_wifinets()) do
 			wdev:del_wifinet(n)
 		end
 	end
-
+]]--
 	local wconf = {
 		device  = m.hidden.device,
 		ssid    = m.hidden.join,

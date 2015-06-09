@@ -129,7 +129,7 @@ function newnet.parse(self, section)
 			wdev:del_wifinet(n)
 		end
 	end
-]]--
+
 	local wconf = {
 		device  = m.hidden.device,
 		ssid    = m.hidden.join,

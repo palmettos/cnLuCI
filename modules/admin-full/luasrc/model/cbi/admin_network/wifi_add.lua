@@ -51,7 +51,7 @@ m.hidden = {
 	wep         = http.formvalue("wep"),
 	wpa_suites	= http.formvalue("wpa_suites"),
 	wpa_version = http.formvalue("wpa_version"),
-	"cbid.network.1.replace" 	= "0"
+	["cbid.network.1.replace"] 	= "0"
 }
 [[--
 if iw and iw.mbssid_support then

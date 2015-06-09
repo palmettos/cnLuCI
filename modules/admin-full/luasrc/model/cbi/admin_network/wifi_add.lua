@@ -121,8 +121,9 @@ function newnet.parse(self, section)
 
 	wdev:set("disabled", false)
 	wdev:set("channel", m.hidden.channel)
---[[
-	if replace:formvalue(section) then
+
+	--if replace:formvalue(section) then
+	if iw and iw.mbssid_support then
 		local n
 		for _, n in ipairs(wdev:get_wifinets()) do
 			wdev:del_wifinet(n)

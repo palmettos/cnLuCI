@@ -50,8 +50,7 @@ m.hidden = {
 	bssid       = http.formvalue("bssid"),
 	wep         = http.formvalue("wep"),
 	wpa_suites	= http.formvalue("wpa_suites"),
-	wpa_version = http.formvalue("wpa_version"),
-	["cbid.network.1.replace"] 	= "0"
+	wpa_version = http.formvalue("wpa_version")
 }
 --[[
 if iw and iw.mbssid_support then
@@ -121,15 +120,14 @@ function newnet.parse(self, section)
 
 	wdev:set("disabled", false)
 	wdev:set("channel", m.hidden.channel)
-
-	--if replace:formvalue(section) then
-	if iw and iw.mbssid_support then
+--[[
+	if replace:formvalue(section) then
 		local n
 		for _, n in ipairs(wdev:get_wifinets()) do
 			wdev:del_wifinet(n)
 		end
 	end
-
+]]--
 	local wconf = {
 		device  = m.hidden.device,
 		ssid    = m.hidden.join,
